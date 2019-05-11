@@ -1,0 +1,4 @@
+.idea/
+
+compose/docker-stack.yml
+data
