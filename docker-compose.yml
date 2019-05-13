@@ -98,7 +98,7 @@ services:
       - "4001:4001"
       # - "80:80"
       # - "443:443"
-    command: ["nginx", "-g", "daemon off;"]
+    command: start-and-run
     networks:
       - network1
 volumes:
