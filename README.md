@@ -1,3 +1,11 @@
+Before spinning up the containers, modify `environment/manifold.env` so that it contains the correct IP or domain name for your server. You'll need to replace 127.0.0.1 from the following env vars:
+
+```
+DOMAIN=127.0.0.1:4000
+CLIENT_BROWSER_API_URL=http://127.0.0.1:4000
+CLIENT_BROWSER_API_CABLE_URL=http://127.0.0.1:4000/cable
+```
+
 Create and start Manifold containers
 ```
 MANIFOLD_TAG=v3.0.0-beta.1 docker-compose up -d
