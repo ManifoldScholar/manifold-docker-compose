@@ -42,7 +42,7 @@ services:
       - ./environment/rails.env
     networks:
       - network1
-    command: ["./start-and-run", "bin/clockwork clock.rb"]
+    command: ["./start-and-run", "bin/zhong zhong.rb"]
   api_rails:
     image: manifoldscholar/manifold_api_rails:${MANIFOLD_TAG}
     volumes:
