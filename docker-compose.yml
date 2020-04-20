@@ -1,11 +1,12 @@
 version: "3"
 services:
   postgres:
-    image: postgres:alpine
+    image: postgres:11-alpine
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: 'manifold_production'
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
     networks:
       - network1
   elasticsearch:
