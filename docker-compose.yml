@@ -32,7 +32,6 @@ services:
     networks:
       - network1
     command: ["./start-and-run", "bin/cable"]
-
   api_clockwork:
     image: manifoldscholar/manifold_api_clockwork:${MANIFOLD_TAG}
     volumes:
@@ -81,11 +80,9 @@ services:
       - ./data/api/public:/manifold_data/api/public
       - ./data/sockets:/manifold_sockets
     ports:
-      - "4000:4000"
-      - "4001:4001"
-#      - "80:80"
-#      - "443:443"
-    command: ["nginx", "-g", "daemon off;"]
+     - "4000:80"
+     - "4001:443"
+    command: ["start-nginx"]
     networks:
       - network1
 volumes:
