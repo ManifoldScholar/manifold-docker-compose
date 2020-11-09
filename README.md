@@ -8,7 +8,7 @@ CLIENT_BROWSER_API_CABLE_URL=http://127.0.0.1:4000/cable
 
 Create and start Manifold containers
 ```
-MANIFOLD_TAG=v3.0.0-beta.1 docker-compose up -d
+MANIFOLD_TAG=v5.1.4-beta.1 docker-compose up -d
 ```
 
 Access the site in your browser. Might take a minute for services to start.

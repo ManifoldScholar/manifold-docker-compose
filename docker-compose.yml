@@ -23,7 +23,7 @@ services:
     networks:
       - network1
   api_cable:
-    image: manifoldscholar/manifold_api_cable:${MANIFOLD_TAG}
+    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -33,7 +33,7 @@ services:
       - network1
     command: ["./start-and-run", "bin/cable"]
   api_clockwork:
-    image: manifoldscholar/manifold_api_clockwork:${MANIFOLD_TAG}
+    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -44,7 +44,7 @@ services:
       - network1
     command: ["./start-and-run", "bin/zhong zhong.rb"]
   api_rails:
-    image: manifoldscholar/manifold_api_rails:${MANIFOLD_TAG}
+    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -54,7 +54,7 @@ services:
     networks:
       - network1
   api_sidekiq:
-    image: manifoldscholar/manifold_api_sidekiq:${MANIFOLD_TAG}
+    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -64,20 +64,20 @@ services:
       - network1
     command: ["./start-and-run", "bin/sidekiq"]
   client:
-    image: manifoldscholar/manifold_client:${MANIFOLD_TAG}
+    image: manifoldscholar/manifold-client:${MANIFOLD_TAG}
     env_file:
       - ./environment/manifold.env
     volumes:
-      - ./data/api:/manifold_data
+      - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
     command: yarn run start-docker
     networks:
       - network1
   proxy:
-    image: manifoldscholar/manifold_proxy:${MANIFOLD_TAG}
+    image: manifoldscholar/manifold-nginx:${MANIFOLD_TAG}
     volumes:
       - ./data/nginx/ssl:/etc/nginx/ssl
-      - ./data/api/public:/manifold_data/api/public
+      - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
     ports:
      - "4000:80"
@@ -85,9 +85,9 @@ services:
     command: ["start-nginx"]
     networks:
       - network1
-volumes:
-  manifold_data:
-  manifold_sockets:
+#volumes:
+#  manifold_data:
+#  manifold_sockets:
 
 networks:
   network1:
