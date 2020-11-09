@@ -23,7 +23,7 @@ services:
     networks:
       - network1
   api_cable:
-    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
+    image: manifoldscholarship/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -33,7 +33,7 @@ services:
       - network1
     command: ["./start-and-run", "bin/cable"]
   api_clockwork:
-    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
+    image: manifoldscholarship/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -44,7 +44,7 @@ services:
       - network1
     command: ["./start-and-run", "bin/zhong zhong.rb"]
   api_rails:
-    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
+    image: manifoldscholarship/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -54,7 +54,7 @@ services:
     networks:
       - network1
   api_sidekiq:
-    image: manifoldscholar/manifold-api:${MANIFOLD_TAG}
+    image: manifoldscholarship/manifold-api:${MANIFOLD_TAG}
     volumes:
       - ./data/api/public:/opt/manifold/api/public
       - ./data/sockets:/manifold_sockets
@@ -64,7 +64,7 @@ services:
       - network1
     command: ["./start-and-run", "bin/sidekiq"]
   client:
-    image: manifoldscholar/manifold-client:${MANIFOLD_TAG}
+    image: manifoldscholarship/manifold-client:${MANIFOLD_TAG}
     env_file:
       - ./environment/manifold.env
     volumes:
@@ -74,7 +74,7 @@ services:
     networks:
       - network1
   proxy:
-    image: manifoldscholar/manifold-nginx:${MANIFOLD_TAG}
+    image: manifoldscholarship/manifold-nginx:${MANIFOLD_TAG}
     volumes:
       - ./data/nginx/ssl:/etc/nginx/ssl
       - ./data/api/public:/opt/manifold/api/public
