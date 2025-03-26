@@ -10,10 +10,18 @@ services:
     networks:
       - network1
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.7
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
     environment:
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      discovery.type: 'single-node'
       xpack.security.enabled: 'false'
+      # And have `sysctl -w vm.max_map_count=262144` done
+      # on the host as ElasticSearch documentation says.
+      # Additional advice: Make vm.max_map_count=262144 persistent!
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
     networks:
       - network1
   redis:
